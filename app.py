@@ -42,28 +42,17 @@ def upload_file():
         return redirect(request.url)
 
     if file and allowed_file(file.filename):
-        # Create the 'uploads' directory if it doesn't exist
+
         if not os.path.exists(app.config['UPLOAD_FOLDER']):
             os.makedirs(app.config['UPLOAD_FOLDER'])
         
-        # Secure the filename to prevent any potential security issues
         filename = secure_filename(file.filename)
         filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
         file.save(filepath)
        
-        # Perform OCR using pytesseract
         image = Image.open(filepath)
         
-        # Print intermediate result for debugging
-        print("OCR Result (English):")
-        print(pytesseract.image_to_string(image, lang='eng'))
-        
-        # Perform OCR with specified configuration
         registration_number = pytesseract.image_to_string(image, lang='eng', config='--psm 6 -c tessedit_char_whitelist=0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ')
-        
-        # Print OCR result for further debugging
-        print("Extracted Registration Number:")
-        print(registration_number)
 
         new_data = OCRData(filename=filename, registration_number=registration_number)
         db.session.add(new_data)
@@ -73,9 +62,7 @@ def upload_file():
 
 @app.route('/list_ocr')
 def list_ocr_data():
-    # Fetch all OCRData entries from the database
     ocr_data = OCRData.query.order_by(OCRData.id.desc()).all()
-    
     return render_template('list_ocr.html', ocr_data=ocr_data, index=1  )
 
 if __name__ == '__main__':
