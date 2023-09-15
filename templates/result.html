@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Result</title>
+</head>
+<body>
+    
+</body>
+</html>
+</div>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vehicle Registration Number Recognition</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        div {
+            margin: 20px auto;
+            max-width: 25%;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        a {
+            display: block;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        p{
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <h1>Registration Number Recognition Result</h1>
+    <div>
+        <p><b>Image Name:</b> {{ filename }}</p>
+        <p><b>Registration No:</b> {{ registration_number }}</p>
+    </div>
+    <a href="/">Upload Another Image</a>
+    <a href="/list_ocr">Go to List</a>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>List OCR Data</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+        }
+
+        .card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        a {
+            display: block;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+        <h1>List of OCR Data</h1>
+        <div class="card">
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Filename</th>
+                <th>Registration Number</th>
+            </tr>
+            {% for data in ocr_data %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ data.filename }}</td>
+                <td>{{ data.registration_number }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <br>
+    </div>
+        <a href="{{ url_for('index') }}">Back to Upload</a>
+</body>
+</html>
